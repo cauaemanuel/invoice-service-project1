@@ -1,9 +1,11 @@
 package com.invoice_service.application.core.domain;
 
+import com.invoice_service.adapter.in.dto.GerarFaturaDTO;
 import com.invoice_service.adapter.out.repository.entity.FaturaEntity;
 import com.invoice_service.application.core.domain.enums.StatusPagamento;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -12,21 +14,11 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Fatura {
 
-    private UUID codigoFatura;
-    private String quantia;
-    private String dataVencimento;
+    private UUID codigoFatura = UUID.randomUUID();
+    private Double quantia;
+    private LocalDate dataVencimento;
     private StatusPagamento statusPagamento;
     private String cpfCliente;
-
-    public static FaturaEntity toEntity(Fatura fatura) {
-        return new FaturaEntity(
-                fatura.getCodigoFatura(),
-                fatura.getQuantia(),
-                fatura.getDataVencimento(),
-                fatura.getStatusPagamento(),
-                fatura.getCpfCliente()
-        );
-    }
 
     public void atualizarStatus(String novoStatusStr) {
         StatusPagamento novoStatus = StatusPagamento.valueOf(novoStatusStr.toUpperCase());
