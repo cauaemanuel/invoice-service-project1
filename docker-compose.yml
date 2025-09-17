@@ -1,0 +1,23 @@
+services:
+  invoice_mongodb:
+    image: mongo:latest
+    container_name: invoice_mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: invoice_db
+    ports:
+      - "27017:27017"
+
+  jenkins-application:
+    image: jenkins/jenkins:lts
+    container_name: jenkins-application
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+
+
+volumes:
+  jenkins_home:

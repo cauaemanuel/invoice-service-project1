@@ -1,0 +1,13 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: invoice-service
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: invoice_db
+      username: root
+      password: root
+      authentication-database: admin
